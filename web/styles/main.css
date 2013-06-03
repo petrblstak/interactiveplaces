@@ -1,0 +1,69 @@
+/* 
+    Document   : main
+    Created on : May 30, 2013, 11:00:12 AM
+    Author     : Petr
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body h1{
+    text-align:center;
+    margin-bottom: 20px;
+}
+
+div.main-content {
+    width: 900px;
+    margin:0 auto;
+}
+
+.main-bottom a {
+    float: right;
+}
+
+div.main-bottom {
+    position:relative;
+    bottom:0;
+    height:60px;      
+    width:100%;
+    border-top: solid gray;
+}
+
+div.main-center {
+    height: 800px;
+}
+
+div.place-list {
+    float: left;
+}
+
+div.place-map {
+    float: right;
+}
+
+#map-canvas {
+    margin: 0;
+    padding: 0;
+    height: 600px;
+    width: 600px;
+}
+
+div.detail-photos {
+    width: 60%;
+    float: right;
+}
+
+div.detail-photos img{
+    width: 90%;
+    margin: 10px 20px;
+}
+
+div.detail-text {
+    float: left;
+    width: 40%;
+}
+
+
