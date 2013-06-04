@@ -65,6 +65,7 @@ public class LoginController implements Serializable {
                 userBean.setName(rs.getString("UserName"));
                 return true;
             }
+            dc.CloseConnection();
         } catch (SQLException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
