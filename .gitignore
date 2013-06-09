@@ -1,3 +1,5 @@
-;/nbproject/
+/nbproject/
 /dist/
 /build/
+/web/META-INF/
+/web/WEB-INF/
