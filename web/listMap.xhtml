@@ -6,15 +6,59 @@
       xmlns:p="http://primefaces.org/ui">
     <f:view contentType="text/html">
         <h:head>
-            <f:facet name="first">
-                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-                <title>IRM</title>
-            </f:facet>
-            <h:outputStylesheet library="css" name="styles/main.css"  />
+            <title>IRM</title>
         </h:head>
 
-        <h:body>            
+        <h:body>                
+            <h:outputStylesheet library="css" name="main.css"/>
             <h1>Hello <h:outputText value="#{userBean.name}"/>!!</h1>
+
+            <h:form id="main_form">
+
+                <p:panel id="places" header="Availible places">
+                    <h:outputLabel for="placetypes" value="Place Type: " />  
+                    <h:selectOneMenu id="placetypes" value="#{listMapController.currentPlaceType}">
+                        <f:selectItems value="#{listMapController.placeTypes}" var="placetype"
+                                       itemValue="#{placetype}" itemLabel="#{placetype.label}" />
+                    </h:selectOneMenu>  
+                    <p:commandButton value="Update" action="#{listMapController.updatePlacesByType}" ajax="false"/>
+                    <br/><br/>
+                    <ui:repeat value="#{listMapController.places}" var="place">
+                        <p:commandLink id="ajax" update=":main_form:detail" actionListener="#{listMapController.updateCurrentPlace(place.listPosition)}">  
+                            <h:outputText value="#{place.placeName}" />  
+                        </p:commandLink>
+                        <br/>
+                    </ui:repeat>
+                    <br/>
+                    <p:commandButton value="Add place" action="#{listMapController.editPlace}"/>
+                </p:panel>
+
+                <br/>
+
+                <p:panel id="detail" header="Selected place details">
+                    <p>here is some info about your currently selected place</p>
+                    <ul>
+                        <li>Name: <h:outputText value="#{listMapController.currentPlace.placeName}"/></li>
+                        <li>Type: <h:outputText value="#{listMapController.currentPlace.placeType}"/></li>
+                        <li>Rating: <h:outputText value="#{listMapController.currentPlace.rating}"/></li>
+                        <li>coordX: <h:outputText value="#{listMapController.currentPlace.coordinateX}"/></li>
+                        <li>coordY: <h:outputText value="#{listMapController.currentPlace.coordinateY}"/></li>
+                    </ul>
+
+                    <p>Aaaaaaand here is finally something to say about that places ofc:</p>
+                    <p><h:outputText value="#{listMapController.currentPlace.description}"/></p>
+
+                    <ui:param name="myplace" value="#{listMapController.isMyPlace()}" />
+                    <p:commandButton value="Edit place" action="#{listMapController.editPlace}" disabled="#{!myplace}"/>
+                    <ui:fragment rendered="#{myplace}">
+                        <p>Luckily this is place you created, so you can mess with it however you like, just click this link ... or button...</p>
+                    </ui:fragment>
+                    <ui:fragment rendered="#{!myplace}">
+                        <p>But this place was created by someone else so get your FILTHY HANDS OFF!!</p>
+                    </ui:fragment>
+                </p:panel>
+
+            </h:form>
         </h:body>
 
     </f:view>
