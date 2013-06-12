@@ -11,7 +11,7 @@
 
         <h:body>                
             <h:outputStylesheet library="css" name="main.css"/>
-            <h1>Hello <h:outputText value="#{userBean.name}"/>!!</h1>
+            <h1>Hello <h:outputText value="#{userBean.name}"/>!</h1>
 
             <h:form id="main_form">
 
@@ -30,32 +30,33 @@
                         <br/>
                     </ui:repeat>
                     <br/>
-                    <p:commandButton value="Add place" action="#{listMapController.editPlace}"/>
+                    <p:commandButton value="Add place" action="#{listMapController.addPlace}" ajax="false"/>
                 </p:panel>
 
                 <br/>
 
                 <p:panel id="detail" header="Selected place details">
-                    <p>here is some info about your currently selected place</p>
+                    <p>Here is some basic info about your currently selected place</p>
                     <ul>
+                        <!--li>UID: <h:outputText value="#{listMapController.currentPlace.userID}"/></li-->
                         <li>Name: <h:outputText value="#{listMapController.currentPlace.placeName}"/></li>
                         <li>Type: <h:outputText value="#{listMapController.currentPlace.placeType}"/></li>
                         <li>Rating: <h:outputText value="#{listMapController.currentPlace.rating}"/></li>
-                        <li>coordX: <h:outputText value="#{listMapController.currentPlace.coordinateX}"/></li>
-                        <li>coordY: <h:outputText value="#{listMapController.currentPlace.coordinateY}"/></li>
+                        <li>GPS Coordinates: <h:outputText value="#{listMapController.currentPlace.coordinateX}"/>,<h:outputText value="#{listMapController.currentPlace.coordinateY}"/></li>
                     </ul>
 
-                    <p>Aaaaaaand here is finally something to say about that places ofc:</p>
+                    <p>Aaaaaaand here is finally something to say about that place ofc:</p>
                     <p><h:outputText value="#{listMapController.currentPlace.description}"/></p>
-
-                    <ui:param name="myplace" value="#{listMapController.isMyPlace()}" />
-                    <p:commandButton value="Edit place" action="#{listMapController.editPlace}" disabled="#{!myplace}"/>
-                    <ui:fragment rendered="#{myplace}">
-                        <p>Luckily this is place you created, so you can mess with it however you like, just click this link ... or button...</p>
-                    </ui:fragment>
-                    <ui:fragment rendered="#{!myplace}">
-                        <p>But this place was created by someone else so get your FILTHY HANDS OFF!!</p>
-                    </ui:fragment>
+                    <f:facet name="footer">                        
+                        <ui:param name="myplace" value="#{listMapController.isMyPlace()}" />
+                        <p:commandButton value="Edit place" action="#{listMapController.editPlace}" disabled="#{!myplace}"/>
+                        <ui:fragment rendered="#{myplace}">
+                            <p>Luckily this is place you created, so you can mess with it however you like, just click the magic button above ;)</p>
+                        </ui:fragment>
+                        <ui:fragment rendered="#{!myplace}">
+                            <p>But this place was created by someone else so get your FILTHY HANDS OFF the edit button!!!</p>
+                        </ui:fragment>
+                    </f:facet>
                 </p:panel>
 
             </h:form>

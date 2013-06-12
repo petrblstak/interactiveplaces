@@ -94,13 +94,17 @@ public class ListMapController implements Serializable {
         //zatim nic
     }
 
+    public String addPlace() {
+        return "editDetail";
+    }
+
     public void updateCurrentPlace(int current) {
         currentPlace = places.get(current);
     }
 
     public String updatePlacesByType() {
         loadPlaces();
-        return null;
+        return "listMap";
     }
 
     private void loadPlaces() {

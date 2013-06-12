@@ -3,9 +3,6 @@
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
         <Node id="login.xhtml" x="113" y="303" zoom="true"/>
-        <Node id="index.xhtml" x="650" y="150" zoom="true"/>
-        <Node id="loginFail.xhtml" x="434" y="151" zoom="true"/>
-        <Node id="welcome.xhtml" x="400" y="300" zoom="true"/>
         <Node id="welcomePrimefaces.xhtml" x="150" y="150" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>

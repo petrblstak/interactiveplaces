@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <title>IRM</title>
+        </h:head>
+
+        <h:body>            
+            <h:outputStylesheet library="css" name="main.css"  />
+            <h1>Create or update your place</h1>
+            <h:form>
+                <p:panel header="Place details">
+                    <h:panelGrid columns="2">
+
+                        <h:outputText value="Type " />  
+                        <h:selectOneMenu value="#{detailController.placeType}">
+                            <f:selectItems value="#{detailController.placeTypes}" var="placetype"
+                                           itemValue="#{placetype}" itemLabel="#{placetype.label}" />
+                        </h:selectOneMenu> 
+                        
+                        <h:outputText value="Name" />  
+                        <p:inputText value="#{detailController.placeName}"
+                                     required="true"
+                                     requiredMessage="Place Name is required"/> 
+
+                        <h:outputText value="Rating" />  
+                        <p:inputText value="#{detailController.rating}"
+                                     required="true"
+                                     requiredMessage="Rating is required"/>
+
+                        <h:outputText value="Coordinate X" />  
+                        <p:inputText value="#{detailController.coordinateX}"
+                                     required="true"
+                                     requiredMessage="Coordinate X is required"/>
+
+                        <h:outputText value="Coordinate Y" />  
+                        <p:inputText value="#{detailController.coordinateY}"
+                                     required="true"
+                                     requiredMessage="Coordinate Y is required"/>
+
+                        <h:outputText value="Description" />  
+                        <p:inputTextarea value="#{detailController.description}"
+                                         required="true"
+                                         requiredMessage="Description is required"/>
+                        
+                    </h:panelGrid>
+                    
+                    <h:messages styleClass="error"/>
+                    
+                    <f:facet name="footer">    
+                        <p:commandButton value="Save" action="#{detailController.savePlace}" ajax="false" />
+                        <p:commandButton value="Back" action="#{listMapController.updatePlacesByType}" ajax="false" immediate="true"/>
+                    </f:facet>
+                    
+                </p:panel>
+            </h:form>
+        </h:body>
+
+    </f:view>
+</html>
