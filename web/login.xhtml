@@ -9,10 +9,10 @@
             <title>IRM</title>
         </h:head>
 
-        <h:body>            
+        <h:body styleClass="login-body">            
             <h:outputStylesheet library="css" name="main.css"  />
             <h:form>
-                <p:panel header="Welcome to our beloved IRM">
+                <p:panel header="Welcome to our beloved IRM" styleClass="login-box">
                     <h:panelGrid columns="2">
                         <h:outputText value="Login" />  
                         <p:inputText value="#{loginController.login}"

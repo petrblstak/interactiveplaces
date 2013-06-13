@@ -9,9 +9,9 @@
             <title>IRM</title>
         </h:head>
 
-        <h:body>            
+        <h:body styleClass="central-body">            
             <h:outputStylesheet library="css" name="main.css"  />
-            <h1>Create or update your place</h1>
+            <h1 class="title ui-widget-header ui-corner-all">Create or update your place</h1>
             <h:form>
                 <p:panel header="Place details">
                     <h:panelGrid columns="2">
@@ -25,7 +25,7 @@
                         <h:outputText value="Name" />  
                         <p:inputText value="#{detailController.placeName}"
                                      required="true"
-                                     requiredMessage="Place Name is required"/> 
+                                     requiredMessage="Name is required"/> 
 
                         <h:outputText value="Rating" />  
                         <p:inputText value="#{detailController.rating}"

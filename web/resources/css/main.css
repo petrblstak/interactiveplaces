@@ -34,6 +34,15 @@ body h1{
     margin:0 auto;
 }
 
+.login-body {
+    width: 350px;
+    margin:0 auto;
+}
+
+.login-box {
+    margin-top: 100px;
+}
+
 .no-border-panel {
     width: 320px;
     border: none;
