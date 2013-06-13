@@ -21,13 +21,15 @@
             <h:form id="main_form">
 
                 <p:panel id="places" header="Availible places" styleClass="list-panel">
-                    <h:outputLabel for="placetypes" value="Place Type: " />  
-                    <h:selectOneMenu id="placetypes" value="#{listMapController.currentPlaceType}">
-                        <f:selectItems value="#{listMapController.placeTypes}" var="placetype"
-                                       itemValue="#{placetype}" itemLabel="#{placetype.label}" />
-                    </h:selectOneMenu>  
-                    <p:commandButton styleClass="list-update-button" value="Update" action="#{listMapController.updatePlacesByType}" ajax="false"/>
-                    <br/><br/>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Place Type:   "/>  
+                        <p:selectOneMenu id="placetypes" value="#{listMapController.currentPlaceType}">
+                            <p:ajax listener="#{listMapController.updatePlacesByType}" update=":main_form:places"/>
+                            <f:selectItems value="#{listMapController.placeTypes}" var="placetype"
+                                           itemValue="#{placetype}" itemLabel="#{placetype.label}" />
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <br/>
 
                     <p:scrollPanel styleClass="no-border-panel">
                         <ui:repeat value="#{listMapController.places}" var="place">
@@ -39,29 +41,35 @@
                 </p:panel>
 
                 <p:panel id="map" header="Places map" styleClass="map-panel" toggleable="true">
-                    <m:map width="560" height="500px" latitude="#{listMapController.currentPlace.coordinateX}" longitude="#{listMapController.currentPlace.coordinateY}" enableScrollWheelZoom="true">                        
+                    <m:map width="760px" height="500px" latitude="#{listMapController.currentPlace.coordinateX}" longitude="#{listMapController.currentPlace.coordinateY}" enableScrollWheelZoom="true">                        
                         <ui:repeat value="#{listMapController.places}" var="place">
                             <m:marker latitude="#{place.coordinateX}" 
                                       longitude="#{place.coordinateY}">
-                                <m:htmlInformationWindow htmlText="#{place.placeName}\n#{place.placeType}\nRating: #{place.rating}" />
+                                <m:htmlInformationWindow htmlText="#{place.placeName}, #{place.placeType}, Rating: #{place.rating}" />
                             </m:marker>
                         </ui:repeat>
                     </m:map>
                 </p:panel>
-                
+
                 <p:panel id="detail" header="Selected place details" styleClass="detail-panel">
-                    <p>Here is some basic info about your currently selected place</p>
-                    <ul>
-                        <!--li>UID: <h:outputText value="#{listMapController.currentPlace.userID}"/></li-->
-                        <li>Name: <h:outputText value="#{listMapController.currentPlace.placeName}"/></li>
-                        <li>Type: <h:outputText value="#{listMapController.currentPlace.placeType}"/></li>
-                        <li>Rating: <h:outputText value="#{listMapController.currentPlace.rating}"/></li>
-                        <li>GPS Coordinates: <h:outputText value="#{listMapController.currentPlace.coordinateX}"/>,<h:outputText value="#{listMapController.currentPlace.coordinateY}"/></li>
-                    </ul>
+                    <div class="detail-panel-miniinfo">
+                        <ul>
+                            <!--li>UID: <h:outputText value="#{listMapController.currentPlace.userID}"/></li-->
+                            <li>Name: <h:outputText value="#{listMapController.currentPlace.placeName}"/></li>
+                            <li>Type: <h:outputText value="#{listMapController.currentPlace.placeType}"/></li>
+                            <li>Rating: <h:outputText value="#{listMapController.currentPlace.rating}"/></li>
+                            <li>GPS Coordinates: <br/><h:outputText value="#{listMapController.currentPlace.coordinateX}"/>,<h:outputText value="#{listMapController.currentPlace.coordinateY}"/></li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-panel-photos">
+                        <img src="AppPhotos/park.jpg"/>
+                    </div>
 
                     <p>Aaaaaaand here is finally something to say about that place ofc:</p>
                     <p><h:outputText value="#{listMapController.currentPlace.description}"/></p>
-                    <f:facet name="footer">                        
+
+                    <f:facet name="footer" class="detail-panel-footer">                        
                         <ui:param name="myplace" value="#{listMapController.isMyPlace()}" />
                         <p:commandButton value="Edit place" action="#{listMapController.editPlace}" disabled="#{!myplace}"/>
                         <ui:fragment rendered="#{myplace}">

@@ -19,18 +19,18 @@ body h1{
 }
 
 .map-panel {
-    width: 600px;
+    width: 800px;
     float: right;
     margin-bottom: 10px;
 }
 
 .detail-panel {  
-    width: 600px;  
+    width: 800px;  
     float: right;
 }
 
 .central-body {
-    width: 1000px;
+    width: 1200px;
     margin:0 auto;
 }
 
@@ -46,4 +46,22 @@ body h1{
 
 .list-update-button {
     margin-left: 5px;
+}
+
+.detail-panel-miniinfo {
+    float: left;
+    width: 370px;
+}
+
+.detail-panel-photos {
+    float: right;
+    width: 390px;
+}
+.detail-panel-photos img {
+    width: 380px;
+    float: right;
+}
+
+.detail-panel-description {
+    float: left;
 }
