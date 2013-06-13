@@ -136,4 +136,21 @@ public class ListMapController implements Serializable {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public String currentPlacePicture(){
+        String imgPath = "AppPhotos/noplace.png";
+        String sql = "SELECT FilePath FROM `photo` WHERE `placeID` = '" + currentPlace.getPlaceID()+ "'";
+        DatabaseConnector dc = new DatabaseConnector();
+        ResultSet rs = dc.getDatabaseData(sql);
+        try {
+            if (rs.isBeforeFirst()) {
+                rs.next();
+                imgPath = "AppPhotos/" + rs.getString("FilePath");
+            }
+            dc.CloseConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return imgPath;
+    }
 }

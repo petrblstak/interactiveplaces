@@ -64,10 +64,10 @@
                     </div>
 
                     <div class="detail-panel-photos">
-                        <img src="AppPhotos/park.jpg"/>
+                        <img src="#{listMapController.currentPlacePicture()}"/>
                     </div>
 
-                    <p>Aaaaaaand here is finally something to say about that place ofc:</p>
+                    <p style="font-weight: bold">Detail description:</p>
                     <p><h:outputText value="#{listMapController.currentPlace.description}"/></p>
 
                     <f:facet name="footer" class="detail-panel-footer">                        
